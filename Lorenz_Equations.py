@@ -15,7 +15,7 @@ dt = tmax/nsteps  # calculate the time step
 
 # initial conditions
 t = 0
-x = np.array([1, -1, 20])
+x = np.array([1, -1, 2])
 
 n = 0  # number of timesteps taken; initialise to 0
 while n < nsteps:
