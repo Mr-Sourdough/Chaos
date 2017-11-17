@@ -4,14 +4,14 @@ import matplotlib.pyplot as pt
 import timestepping as ts
 
 # parameters
-b = 8/3
+b = 8 / 3
 r = 28
 sigma = 10
 
 # time−stepping parameters
 tmax = 1  # run to this time
 nsteps = 100  # number of time steps
-dt = tmax/nsteps  # calculate the time step
+dt = tmax / nsteps  # calculate the time step
 
 # initial conditions
 t = 0

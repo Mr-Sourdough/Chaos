@@ -1,7 +1,7 @@
 import numpy as np
 
 # set standard parameters
-b = 8/3
+b = 8 / 3
 sigma = 10
 r = 1.1
 
