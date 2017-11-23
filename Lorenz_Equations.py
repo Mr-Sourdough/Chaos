@@ -35,8 +35,8 @@ for steps in range(nsteps):
 # plot the three variables in 3D
 fig = pt.figure()
 ax = fig.gca(projection='3d')
-ax.set_xlim(-20,20)
-ax.set_ylim(-40,40)
+ax.set_xlim(-20, 20)
+ax.set_ylim(-40, 40)
 ax.plot(xs, ys, zs, lw=0.1)
 
 # show the final image
