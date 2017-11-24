@@ -11,7 +11,7 @@ sigma = 10
 
 # time−stepping parameters
 tmax = 50  # run to this time
-nsteps = 10000  # number of time steps
+nsteps = 7500  # number of time steps
 dt = tmax / nsteps  # calculate the time step
 
 # initial conditions
