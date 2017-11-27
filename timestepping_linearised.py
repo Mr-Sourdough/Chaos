@@ -13,5 +13,5 @@ def calc_dxdt(x, b, r, sigma):
     dxdt = 0 * x
     dxdt[0] = sigma * (x[1] - x[0])
     dxdt[1] = r * x[0] - x[1]
-    dxdt[2] = - b * x[2]
+    dxdt[2] = -b * x[2]
     return dxdt

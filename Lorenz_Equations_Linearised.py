@@ -5,13 +5,13 @@ import timestepping_linearised as ts
 from mpl_toolkits.mplot3d import Axes3D
 
 # parameters
-b = 8 / 3
+b = 8.0 / 3
 r = 28
 sigma = 10
 
 # time-stepping parameters
-tmax = 50  # run to this time
-nsteps = 7500  # number of time steps
+tmax = 1.0  # run to this time
+nsteps = 20  # number of time steps
 dt = tmax / nsteps  # calculate the time step
 
 # initial conditions
@@ -31,6 +31,7 @@ for steps in range(nsteps):
     xs = np.append(xs, x[0])
     ys = np.append(ys, x[1])
     zs = np.append(zs, x[2])
+    print(x)
 
 # plot the three variables in 3D
 fig = pt.figure()
