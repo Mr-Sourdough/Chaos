@@ -9,7 +9,7 @@ b = 8 / 3
 r = 28
 sigma = 10
 
-# time−stepping parameters
+# time-stepping parameters
 tmax = 50  # run to this time
 nsteps = 7500  # number of time steps
 dt = tmax / nsteps  # calculate the time step
