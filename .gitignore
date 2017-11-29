@@ -106,3 +106,6 @@ ENV/
 
 # PDF
 .pdf
+
+# PNG files
+.png
