@@ -107,5 +107,8 @@ ENV/
 # PDF
 .pdf
 
+# PNG files
+.png
+
 # Database files
 .db
