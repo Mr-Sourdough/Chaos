@@ -1,3 +1,6 @@
+# This file is identical to Lorenz_Equations.py with the exception
+# of importing timestepping_linearised.py instead of time-stepping.py
+
 # time steps the Lorenz equations
 import numpy as np
 import matplotlib.pyplot as pt
@@ -11,7 +14,7 @@ sigma = 1
 
 # time-stepping parameters
 tmax = 5.0  # run to this time
-nsteps = 2000  # number of time steps
+nsteps = 200  # number of time steps
 dt = tmax / nsteps  # calculate the time step
 
 # initial conditions
