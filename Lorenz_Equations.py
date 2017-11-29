@@ -14,18 +14,18 @@ fig = pt.figure()
 ax = fig.gca(projection='3d')
 
 # time-stepping parameters
-tmax = 50.0  # run to this time
-nsteps = 7500  # number of time steps
+tmax = 2.0  # run to this time
+nsteps = 100  # number of time steps
 dt = tmax / nsteps  # calculate the time step
 
 # initial conditions
 t = 0
 x1 = np.array([1, 0, 0])
-x2 = np.arrary([0, -1, r - 1])
-points = [x1, x2]
+x2 = np.array([0, -1, r - 1])
+points = [(x1, 'r'), (x2, 'b')]
 
 # first loop goes over each point
-for x in points:
+for x, c in points:
     # initialise x, y and z arrays
     xs = np.array(x[0])
     ys = np.array(x[1])
@@ -42,8 +42,9 @@ for x in points:
         ys = np.append(ys, x[1])
         zs = np.append(zs, x[2])
 
-        # plot the arrays
-        ax.plot(xs, ys, zs, lw=0.5)
+        # plot the arrays and initial points
+        ax.plot(xs, ys, zs, c, lw=0.1)
+    ax.scatter(x[0], x[1], x[2], c)
 
 # show the final image
 pt.show()
