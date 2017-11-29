@@ -109,6 +109,3 @@ ENV/
 
 # PNG files
 .png
-
-# Database files
-.db
