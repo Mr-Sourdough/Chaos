@@ -109,3 +109,6 @@ ENV/
 
 # PNG files
 .png
+
+# MAC .DS_Store
+.DS_Store
