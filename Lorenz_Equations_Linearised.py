@@ -1,3 +1,6 @@
+# This file is identical to Lorenz_Equations.py with the exception
+# of importing timestepping_linearised.py instead of time-stepping.py
+
 # time steps the Lorenz equations
 import numpy as np
 import matplotlib.pyplot as pt
