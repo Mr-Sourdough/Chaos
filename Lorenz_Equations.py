@@ -4,6 +4,8 @@ import matplotlib.pyplot as pt
 import timestepping as ts
 from mpl_toolkits.mplot3d import Axes3D
 
+''' modify to make into a function '''
+
 # parameters
 b = 8 / 3
 r = 28
@@ -44,7 +46,7 @@ for x, c in points:
 
         # plot the arrays and initial points
         ax.plot(xs, ys, zs, c, lw=0.1)
-    ax.scatter(x[0], x[1], x[2], c)
+    ax.scatter(x[0], x[1], x[2])
 
 # show the final image
 pt.show()
