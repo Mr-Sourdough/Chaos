@@ -44,6 +44,6 @@ def lorenz_eq(b, r, sigma, t=0, tmax, nsteps, points, save=False):
         ax.scatter(x[0], x[1], x[2])  # and initial points
 
     if save == True:
-        pt.savefig()  # save plot to file...
+        pt.savefig('Lorenz plot.png')  # save plot to file...
     else:
         pt.show()  # or show the final image
