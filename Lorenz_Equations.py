@@ -1,5 +1,5 @@
 import numpy as np
-import matplotlib.pyplot as pt
+import matplotlib.pyplot as plt
 import timestepping as ts
 from mpl_toolkits.mplot3d import Axes3D
 
@@ -16,7 +16,7 @@ If
 
 def lorenz_eq(b, r, sigma, tmax, nsteps, points, t=0, save=False):
     # create 3d figure to plot on
-    fig = pt.figure()
+    fig = plt.figure()
     ax = fig.gca(projection='3d')
 
     # calculate the time step
@@ -44,6 +44,6 @@ def lorenz_eq(b, r, sigma, tmax, nsteps, points, t=0, save=False):
         ax.scatter(x[0], x[1], x[2])  # and initial points
 
     if save == True:
-        pt.savefig('Lorenz plot.png')  # save plot to file...
+        plt.savefig('Lorenz plot.png')  # save plot to file...
     else:
-        pt.show()  # or show the final image
+        plt.show()  # or show the final image
