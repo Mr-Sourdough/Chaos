@@ -21,7 +21,8 @@ def lorenz_eq(b, r, sigma, tmax, nsteps, points, t=0, save=False):
     dt = tmax / nsteps
 
     # first loop goes over each point
-    for x, c in enumerate(points):
+    for x, colour in enumerate(points):
+
         # initialise xs, ys and zs arrays
         xs = np.array(x[0])
         ys = np.array(x[1])
@@ -34,7 +35,7 @@ def lorenz_eq(b, r, sigma, tmax, nsteps, points, t=0, save=False):
             ys = np.append(ys, x[1])
             zs = np.append(zs, x[2])
 
-            ax.plot(xs, ys, zs, 'C{}'.format(c), lw=0.1)  # plot the arrays...
+            ax.plot(xs, ys, zs, 'C{}'.format(colour), lw=0.1)  # plot the arrays...
         ax.scatter(x[0], x[1], x[2])  # and initial points
 
     if save == True:
