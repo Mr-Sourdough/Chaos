@@ -5,7 +5,7 @@ from mpl_toolkits.mplot3d import Axes3D
 
 '''
 For this function, b, r, and sigma are the parameters in the Lorenz Equations
-initial time t is set to zero and runs to tmax
+initial time t is set to zero and runs to tmax (needs to be a float)
 with nsteps being the number of steps taken between t and tmax
 points is a list initial points at initial t in the form np.array([x, y, z])
 with x, y and z being the coordinates
