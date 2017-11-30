@@ -14,7 +14,7 @@ and the second being the colour of the line drawn from that point.
 If
 '''
 
-def lorenz_eq(b, r, sigma, t=0, tmax, nsteps, points, save=False):
+def lorenz_eq(b, r, sigma, tmax, nsteps, points, t=0, save=False):
     # create 3d figure to plot on
     fig = pt.figure()
     ax = fig.gca(projection='3d')
