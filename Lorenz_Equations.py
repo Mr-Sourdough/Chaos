@@ -29,13 +29,9 @@ def lorenz_eq(b, r, sigma, tmax, nsteps, points, t=0, save=False):
         ys = np.array(x[1])
         zs = np.array(x[2])
 
-        n = 0  # number of timesteps taken; initialise to 0
-
         # creates the plot arrays
         for steps in range(nsteps):
             x = ts.step_rk2(x, dt, b, r, sigma)
-            t += dt
-            n += 1
             xs = np.append(xs, x[0])
             ys = np.append(ys, x[1])
             zs = np.append(zs, x[2])
