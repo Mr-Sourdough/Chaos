@@ -23,7 +23,7 @@ ax.set_xlabel('X')
 ax.set_ylabel('Y')
 ax.set_zlabel('Z')
 
-a=0.7
+a=100
 
 def lorenz(vec, t0, s=10, b=8/3, r=a):
     (x,y,z)=vec
@@ -34,21 +34,19 @@ x_1 = [0,-1,a-1]
 
 each = [(x_0, 'g'), (x_1, 'r')]
 
-
 ti=0
-tf=1
-nsteps=10
+tf=1000
+nsteps=50000
 t = np.linspace(ti, tf, nsteps)
 
-for i, point_colour in enumerate(each):
-    x, c = point_colour
-    xt_i = integrate.odeint(lorenz, x, t)
+for i, c in each:
+    xt_i = integrate.odeint(lorenz, i, t)
     
     j_i=[row[0] for row in xt_i]
     k_i=[row[1] for row in xt_i]
     l_i=[row[2] for row in xt_i]
     
-    ax.plot(j_i, k_i, l_i, c, linewidth=0.4, label='x_{}'.format(i))
+    ax.plot(j_i, k_i, l_i, c, linewidth=0.2, label=i)
     ax.plot([1,0],[0,-1], [0,a-1], 'bx', markersize=5)
     ax.legend()
 
