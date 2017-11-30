@@ -45,6 +45,7 @@ ax.set_zlabel('Z')
 ax.plot(j_0,k_0,l_0, 'g', linewidth=0.4, label=x_0)
 ax.plot(j_1,k_1,l_1, 'r', linewidth=0.4, label=x_1)
 ax.plot([1,0],[0,-1], [0,a-1], 'bx', markersize=5)
+
 ax.legend()
 
 #ax.view_init(0,-25)

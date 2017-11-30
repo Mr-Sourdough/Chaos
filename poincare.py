@@ -27,14 +27,22 @@ t = np.linspace(ti, tf, nsteps)
 
 xt = integrate.odeint(lorenz, x_0, t)
 
+#j=np.array(row[0] for row in xt)
+#k=np.array(row[1] for row in xt)
+#l=np.array(row[2] for row in xt)
+
 j=[row[0] for row in xt]
 k=[row[1] for row in xt]
 l=[row[2] for row in xt]
-    
-x=[j for (j,k,l) in xt if l==27]
-y=[k for (j,k,l) in xt if l==27]
-pt.plot([x,y])
-pt.plot([1],[0], [0,], 'bx', markersize=5)
+
+l=27
+
+graph = np.array([j,k])
+#psec=np.array([(j,k) '''for (j,k) in graph if l==27'''])
+
+pt.plot(graph)
+
+pt.plot([1],[0], 'bx', markersize=5)
 pt.legend()
 
 #ax.view_init(0,-25)

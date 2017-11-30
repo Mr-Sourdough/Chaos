@@ -1,11 +1,3 @@
-#!/usr/bin/env python3
-# -*- coding: utf-8 -*-
-"""
-Created on Wed Nov 29 11:01:09 2017
-
-@author: Phin
-"""
-
 # -*- coding: utf-8 -*-
 """
 Created on Tue Nov 28 13:46:10 2017
@@ -23,7 +15,8 @@ ax.set_xlabel('X')
 ax.set_ylabel('Y')
 ax.set_zlabel('Z')
 
-a=100
+
+a=1
 
 def lorenz(vec, t0, s=10, b=8/3, r=a):
     (x,y,z)=vec
@@ -35,7 +28,7 @@ x_1 = [0,-1,a-1]
 each = [(x_0, 'g'), (x_1, 'r')]
 
 ti=0
-tf=1000
+tf=12500
 nsteps=50000
 t = np.linspace(ti, tf, nsteps)
 
@@ -46,10 +39,12 @@ for i, c in each:
     k_i=[row[1] for row in xt_i]
     l_i=[row[2] for row in xt_i]
     
-    ax.plot(j_i, k_i, l_i, c, linewidth=0.2, label=i)
-    ax.plot([1,0],[0,-1], [0,a-1], 'bx', markersize=5)
-    ax.legend()
+    ax.plot(j_i, k_i, l_i, c, linewidth=0.4, label=i)
+
+
+ax.plot([1,0],[0,-1], [0,a-1], 'bx', markersize=5)
+ax.legend()
 
 #ax.view_init(0,-25)
 
-#pt.savefig('100.png', dpi=250)
+pt.savefig('1.png', dpi=250)
