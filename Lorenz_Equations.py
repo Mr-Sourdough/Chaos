@@ -12,6 +12,7 @@ with x, y and z being the coordinates
 If save set to True, save the final plot as "Lorenz plot.png"
 '''
 
+
 def lorenz_eq(b, r, sigma, tmax, nsteps, points, t=0, save=False):
     # create 3d figure to plot on
     fig = plt.figure()
