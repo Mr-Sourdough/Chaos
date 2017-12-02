@@ -1,6 +1,7 @@
 import matplotlib.pyplot as plt
 import numpy as np
 import timestepping as tstep
+from Lorenz_Equations import lorenz_eq
 
 x0 = np.array([10**-6, 10**-6, 10**-6])
 
@@ -11,7 +12,7 @@ x0 = np.array([10**-6, 10**-6, 10**-6])
 def lorenz_points(b, r, sigma, tmax, nsteps, x):
     # calculate the time step
     dt = tmax / nsteps
-
+    print(dt)
     # creates the plot arrays
     dist = np.empty(nsteps)
     for steps in range(nsteps):
@@ -22,4 +23,5 @@ def lorenz_points(b, r, sigma, tmax, nsteps, x):
     plt.plot(ts, dist)
     plt.show()
 
-lorenz_points(8/3, 28, 10, 5.0, 200, x0)
+lorenz_points(8/3, 28, 10, 20.0, 500, x0)
+lorenz_eq(8/3, 28, 10, 20.0, 500, x0)
