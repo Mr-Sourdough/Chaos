@@ -12,7 +12,7 @@ x0 = np.array([10**-6, 10**-6, 10**-6])
 def lorenz_points(b, r, sigma, tmax, nsteps, x):
     # calculate the time step
     dt = tmax / nsteps
-    print(dt)
+
     # creates the plot arrays
     dist = np.empty(nsteps)
     for steps in range(nsteps):
