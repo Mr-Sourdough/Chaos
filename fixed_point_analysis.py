@@ -20,8 +20,11 @@ def lorenz_points(b, r, sigma, tmax, nsteps, x):
         np.append(dist, np.linalg.norm(x - x0))
     # generate a time values array to plot dist against
     ts = np.array([n * dt for n in range(1, nsteps + 1)])
+    plt.figure()
     plt.plot(ts, dist)
     plt.show()
 
-lorenz_points(8/3, 28, 10, 20.0, 500, x0)
-lorenz_eq(8/3, 28, 10, 20.0, 500, x0)
+print(type(x0))
+'''
+lorenz_points(8 / 3, 28, 10, 10.0, 500, [x0])
+lorenz_eq(8 / 3, 28, 10, 10.0, 500, [x0])'''
