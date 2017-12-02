@@ -46,5 +46,3 @@ def lorenz_eq(b, r, sigma, tmax, nsteps, points, t=0, save=False):
         plt.savefig('Lorenz plot.png')  # save plot to file...
     else:
         plt.show()  # or show the final image
-
-lorenz_eq(8/3, 28, 10, 20.0, 500, [np.array([0, 1, 2])])
