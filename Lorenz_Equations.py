@@ -13,7 +13,7 @@ If save set to True, save the final plot as "Lorenz plot.png"
 '''
 
 
-def lorenz_eq(b, r, sigma, tmax, nsteps, points, t=0, save=False):
+def lorenz_eq(b, r, sigma, tmax, nsteps, points, save=False):
     # colours
     colours = ['b', 'g', 'r', 'c', 'm', 'y', 'k', 'w']
 
