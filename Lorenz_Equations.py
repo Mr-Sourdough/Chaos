@@ -26,6 +26,8 @@ def lorenz_eq(b, r, sigma, tmax, nsteps, points, t=0, save=False):
 
     # first loop goes over each point
     for colour, x in enumerate(points):
+        # plot initial points
+        ax.scatter(x[0], x[1], x[2])
 
         # initialise xs, ys and zs arrays
         xs = np.array(x[0])
@@ -39,8 +41,8 @@ def lorenz_eq(b, r, sigma, tmax, nsteps, points, t=0, save=False):
             ys = np.append(ys, x[1])
             zs = np.append(zs, x[2])
 
-            ax.plot(xs, ys, zs, colours[colour], lw=0.1)  # plot the arrays...
-        ax.scatter(x[0], x[1], x[2])  # and initial points
+            # plot the arrays
+            ax.plot(xs, ys, zs, colours[colour], lw=0.1)
 
     if save is True:
         return plt.savefig('Lorenz plot.png')  # save plot to file...
