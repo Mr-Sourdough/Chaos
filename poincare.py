@@ -20,30 +20,30 @@ def lorenz(vec, t0, s=10, b=8/3, r=a):
 x_0 = [1,0,0]
 
 ti=0
-tf=1000
-nsteps=50000
+tf=100
+nsteps=500
 t = np.linspace(ti, tf, nsteps)
 
 
 xt = integrate.odeint(lorenz, x_0, t)
 
-#j=np.array(row[0] for row in xt)
-#k=np.array(row[1] for row in xt)
-#l=np.array(row[2] for row in xt)
-
 j=[row[0] for row in xt]
 k=[row[1] for row in xt]
 l=[row[2] for row in xt]
 
-l=27
+c,d,q,w,=0,0,0,0
+for i in range(nsteps):
+    if l[i] is not 27:
+        j[i], k[i] = c,d
+    else:
+        q, w = j[i], k[i]
+        
+print(j,k,l)
 
-graph = np.array([j,k])
-#psec=np.array([(j,k) '''for (j,k) in graph if l==27'''])
+#pt.plot(c, d, 'r.')
+#pt.plot(t, j, 'g.')
 
-pt.plot(graph)
-
-pt.plot([1],[0], 'bx', markersize=5)
-pt.legend()
+#pt.plot([1],[0], 'bx', markersize=5)
 
 #ax.view_init(0,-25)
 
