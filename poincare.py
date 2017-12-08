@@ -4,7 +4,7 @@ import numpy as np
 
 pt.rcParams.update({'font.size': 8})
 
-a=28
+a=5
 
 z_val=a-1
 
@@ -12,10 +12,10 @@ def lorenz(vec, t0, s=10, b=8/3, r=a):
     (x,y,z)=vec
     return [s*(y-x), x*(r-z)-y, x*y-b*z]
 
-x_0 = [1,-1,20]
+x_0 = [0,-1,a-1]
 
 ti=0
-tf=100
+tf=40
     
 nsteps=25000
 
@@ -31,7 +31,7 @@ for i in range(nsteps-1):
         continue
     else:
         j[i], k[i] = 'a', 'a'
-if not z_val*0.95 < l[-1] < z_val*1.05:
+if not z_val*0.99 < l[-1] < z_val*1.01:
     j[-1], k[-1] = 'a', 'a'
 
 i = 0
@@ -45,7 +45,7 @@ while 'a' in j:
 
 pt.ylabel('y')
 pt.xlabel('x')
-pt.title('r=''{}'.format(nsteps))
-pt.plot(j, k, 'b+', markersize = 4)
-pt.savefig('{}'.format(nsteps), format = 'jpg', dpi=250)
+pt.title('nsteps=25000,        r=''{}'.format(a))
+pt.plot(j, k, 'r+', markersize = 3)
+pt.savefig('r=''{}'.format(a), format = 'jpg', dpi=250)
 
