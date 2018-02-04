@@ -18,7 +18,7 @@ def lorenz_points(b, r, sigma, dt, nsteps, x):
     # creates the plot arrays
     dist = np.empty(nsteps)
     for steps in range(nsteps):
-        x = tstep.step_rk2(x, dt, b, r, sigma)
+        x = tstep.step_rk2_mod(x, dt, b, r, sigma)
         np.append(dist, np.linalg.norm(x - x_init))
 
     # generate a time values array to plot dist against
