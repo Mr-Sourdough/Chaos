@@ -1,52 +1,50 @@
-# time steps the Lorenz equations
 import numpy as np
-import matplotlib.pyplot as pt
+import matplotlib.pyplot as plt
 import timestepping as ts
 from mpl_toolkits.mplot3d import Axes3D
 
-''' modify to make into a function '''
+'''
+For this function, b, r, and sigma are the parameters in the Lorenz Equations
+initial time t is set to zero and runs to tmax (needs to be a float)
+with nsteps being the number of steps taken between t and tmax
+points is a list of initial points at initial t in the form np.array([x, y, z])
+with x, y and z being the coordinates
+If save set to True, save the final plot as "Lorenz plot.png"
+'''
 
-# parameters
-b = 8 / 3
-r = 28
-sigma = 10
 
-# plot the three variables in 3D
-fig = pt.figure()
-ax = fig.gca(projection='3d')
+def lorenz_eq(b, r, sigma, tmax, nsteps, points, save=False):
+    # colours
+    colours = ['b', 'g', 'r', 'c', 'm', 'y', 'k', 'w']
 
-# time-stepping parameters
-tmax = 2.0  # run to this time
-nsteps = 100  # number of time steps
-dt = tmax / nsteps  # calculate the time step
+    # create 3d figure to plot on
+    fig = plt.figure()
+    ax = fig.gca(projection='3d')
 
-# initial conditions
-t = 0
-x1 = np.array([1, 0, 0])
-x2 = np.array([0, -1, r - 1])
-points = [(x1, 'r'), (x2, 'b')]
+    # calculate the time step
+    dt = tmax / nsteps
 
-# first loop goes over each point
-for x, c in points:
-    # initialise x, y and z arrays
-    xs = np.array(x[0])
-    ys = np.array(x[1])
-    zs = np.array(x[2])
+    # first loop goes over each point
+    for colour, x in enumerate(points):
+        # plot initial points
+        ax.scatter(x[0], x[1], x[2])
 
-    n = 0  # number of timesteps taken; initialise to 0
+        # initialise xs, ys and zs arrays
+        xs = np.array(x[0])
+        ys = np.array(x[1])
+        zs = np.array(x[2])
 
-    # creates the plot arrays
-    for steps in range(nsteps):
-        x = ts.step_rk2(x, dt, b, r, sigma)
-        t += dt
-        n += 1
-        xs = np.append(xs, x[0])
-        ys = np.append(ys, x[1])
-        zs = np.append(zs, x[2])
+        # creates the plot arrays
+        for steps in range(nsteps):
+            x = ts.step_rk2(x, dt, b, r, sigma)
+            xs = np.append(xs, x[0])
+            ys = np.append(ys, x[1])
+            zs = np.append(zs, x[2])
 
-        # plot the arrays and initial points
-        ax.plot(xs, ys, zs, c, lw=0.1)
-    ax.scatter(x[0], x[1], x[2])
+            # plot the arrays
+            ax.plot(xs, ys, zs, colours[colour], lw=0.1)
 
-# show the final image
-pt.show()
+    if save is True:
+        return plt.savefig('Lorenz plot.png')  # save plot to file...
+    else:
+        return plt.show()  # or show the final image
