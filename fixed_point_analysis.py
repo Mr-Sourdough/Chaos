@@ -40,5 +40,5 @@ r = 10
 m = 20.0
 n = int(m * 100)
 
-lorenz_eq(8 / 3, 28, r, m, n, [x_0], save=True)
+lorenz_eq(8 / 3, 28, r, m, n, [x_0])
 lorenz_points(8 / 3, 28, r, m, n, x_0)
