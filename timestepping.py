@@ -15,3 +15,19 @@ def calc_dxdt(x, b, r, sigma):
     dxdt[1] = r * x[0] - x[1] - x[0] * x[2]
     dxdt[2] = x[0] * x[1] - b * x[2]
     return dxdt
+
+
+def step_rk2_mod(x, dt, b, r, sigma):
+    k_1 = dt * calc_dxdt(x, b, r, sigma)
+    k_2 = dt * calc_dxdt(x + k_1, b, r, sigma)
+    x_out = 0.5 * (k_1 + k_2)
+    return x_out
+
+
+def step_rk4(x, dt, b, r, sigma):
+    k_1 = dt * calc_dxdt(x, b, r, sigma)
+    k_2 = dt * calc_dxdt(x + 0.5 * k_1, b, r, sigma)
+    k_3 = dt * calc_dxdt(x + 0.5 * k_2, b, r, sigma)
+    k_4 = dt * calc_dxdt(x + k_3, b, r, sigma)
+    x_out = x + (k_1 + 2 * k_2 + 2 * k_3 + k_4) / 6
+    return x_out
