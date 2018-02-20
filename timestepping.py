@@ -8,6 +8,7 @@ def calc_dxdt(x, b, r, sigma):
 
 
 def step_rk2(x, dt, b, r, sigma):
+    # Runge-Kutta second order method
     k_1 = dt * calc_dxdt(x, b, r, sigma)
     k_2 = dt * calc_dxdt(x + 0.5 * k_1, b, r, sigma)
     x_out = x + k_2
@@ -15,6 +16,7 @@ def step_rk2(x, dt, b, r, sigma):
 
 
 def step_rk4(x, dt, b, r, sigma):
+    # Runge-Kutta fourth order method
     k_1 = dt * calc_dxdt(x, b, r, sigma)
     k_2 = dt * calc_dxdt(x + 0.5 * k_1, b, r, sigma)
     k_3 = dt * calc_dxdt(x + 0.5 * k_2, b, r, sigma)
