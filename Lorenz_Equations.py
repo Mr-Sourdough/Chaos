@@ -36,7 +36,7 @@ def lorenz_eq(b, r, sigma, tmax, nsteps, points, save=False):
 
         # creates the plot arrays
         for steps in range(nsteps):
-            x = ts.step_rk2(x, dt, b, r, sigma)
+            x = ts.step_rk4(x, dt, b, r, sigma)
             xs = np.append(xs, x[0])
             ys = np.append(ys, x[1])
             zs = np.append(zs, x[2])
