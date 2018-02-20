@@ -20,7 +20,7 @@ def calc_dxdt(x, b, r, sigma):
 def step_rk2_mod(x, dt, b, r, sigma):
     k_1 = dt * calc_dxdt(x, b, r, sigma)
     k_2 = dt * calc_dxdt(x + k_1, b, r, sigma)
-    x_out = 0.5 * (k_1 + k_2)
+    x_out = x + 0.5 * (k_1 + k_2)
     return x_out
 
 
