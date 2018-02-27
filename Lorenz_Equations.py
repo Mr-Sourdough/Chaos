@@ -2,6 +2,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 import timestepping as ts
 from mpl_toolkits.mplot3d import Axes3D
+from time import strftime
 
 '''
 For this function, b, r, and sigma are the parameters in the Lorenz Equations
@@ -45,6 +46,8 @@ def lorenz_eq(b, r, sigma, tmax, nsteps, points, linearise=False, save=False):
             ax.plot(xs, ys, zs, colours[colour], lw=0.1)
 
     if save is True:
-        return plt.savefig('Lorenz plot.png')  # save plot to file...
+        # save plot to file
+        return plt.savefig('Lorenz plot {}.png'.format(strftime('%H-%M-%S')))
     else:
-        return plt.show()  # or show the final image
+        # or show the final image
+        return plt.show()
