@@ -1,3 +1,5 @@
+"""timestepping module"""
+
 def calc_dxdt(x, b, r, sigma):
     # calculates the vector dx / dt for the Lorenz equations
     dxdt = 0 * x
