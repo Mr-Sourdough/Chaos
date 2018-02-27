@@ -13,7 +13,7 @@ If save set to True, save the final plot as "Lorenz plot.png"
 '''
 
 
-def lorenz_eq(b, r, sigma, tmax, nsteps, points, save=False):
+def lorenz_eq(b, r, sigma, tmax, nsteps, points, linearise=False, save=False):
     # colours
     colours = ['b', 'g', 'r', 'c', 'm', 'y', 'k', 'w']
 
@@ -36,7 +36,7 @@ def lorenz_eq(b, r, sigma, tmax, nsteps, points, save=False):
 
         # creates the plot arrays
         for steps in range(nsteps):
-            x = ts.step_rk4(x, dt, b, r, sigma)
+            x = ts.step_rk4(x, dt, b, r, sigma, linearise)
             xs = np.append(xs, x[0])
             ys = np.append(ys, x[1])
             zs = np.append(zs, x[2])
