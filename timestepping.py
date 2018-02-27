@@ -8,6 +8,14 @@ def calc_dxdt(x, b, r, sigma):
     dxdt[2] = x[0] * x[1] - b * x[2]
     return dxdt
 
+def calc_dxdt_lin(x, b, r, sigma):
+    # calculates the vector dx / dt for the linearized Lorenz equations
+    dxdt = 0 * x
+    dxdt[0] = sigma * (x[1] - x[0])
+    dxdt[1] = r * x[0] - x[1]
+    dxdt[2] = -b * x[2]
+    return dxdt
+
 
 def step_rk2(x, dt, b, r, sigma):
     # Runge-Kutta second order method
