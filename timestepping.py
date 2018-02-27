@@ -2,12 +2,12 @@
 
 def calc_dxdt(x, b, r, sigma, linearise=False):
     # Calculates the vector dx / dt for the Lorenz equations
-    if linearise == False:
+    if linearise is False:
         dxdt = 0 * x
         dxdt[0] = sigma * (x[1] - x[0])
         dxdt[1] = r * x[0] - x[1] - x[0] * x[2]
         dxdt[2] = x[0] * x[1] - b * x[2]
-    elif linearise == True:
+    elif linearise is True:
         # linearised system
         dxdt = 0 * x
         dxdt[0] = sigma * (x[1] - x[0])
