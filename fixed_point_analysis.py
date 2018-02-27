@@ -11,11 +11,6 @@ to measure the distance from x0
 x is a single point as np.array
 '''
 
-'''
-Future:
- - put dt size instead of nsteps
-'''
-
 
 def lorenz_points(b, r, sigma, tmax, nsteps, x):
     dt = tmax / nsteps  # calculate the time step
