@@ -71,3 +71,9 @@ def step_rk4_RE(x, dt, b, r, sigma, linearise=False):
     # Richardson Extrapolation
     x_out = x_large_step + (x_large_step - x_two_small_steps)/3
     return x_out
+
+
+def step_midpoint(x, dt, b, r, sigma, linearise=False):
+    k = x + 0.5 * dt * calc_dxdt(x, b, r, sigma, linearise)
+    x_out = x + dt * calc_dxdt(k, b, r, sigma, linearise)
+    return x_out
