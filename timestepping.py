@@ -39,12 +39,6 @@ def step_rk4(x, h, brsigma, linearise=False):
     return x_out
 
 
-def step_midpoint(x, h, brsigma, linearise=False):  # same as rk2!
-    k = x + 0.5 * h * calc_dxdt(x, brsigma, linearise)
-    x_out = x + h * calc_dxdt(k, brsigma, linearise)
-    return x_out
-
-
 def Rich_Extrap(x, h, brsigma, method, linearise=False):
     # Calculate large step x_large_h, then for two small steps and extrapolate
     x_large_h = method(x, h, brsigma, linearise)
