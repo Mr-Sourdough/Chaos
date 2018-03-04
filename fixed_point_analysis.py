@@ -31,9 +31,10 @@ def lorenz_points(brsigma, tmax, nsteps, x):
     return None
 
 
-r = 10
+sigma = 10
 m = 20.0
 n = int(m * 100)
+brsigma = (8/3, 28, sigma)
 
-lorenz_eq(8 / 3, 28, r, m, n, [x_0])
-lorenz_points(8 / 3, 28, r, m, n, x_0)
+lorenz_eq(brsigma, m, n, [x_0])
+lorenz_points(brsigma, m, n, x_0)
