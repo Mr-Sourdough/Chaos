@@ -12,7 +12,7 @@ x is a single point as np.array
 '''
 
 
-def lorenz_points(b, r, sigma, tmax, nsteps, x):
+def lorenz_points(brsigma, tmax, nsteps, x):
     dt = tmax / nsteps  # calculate the time step
     x0 = x  # save initial point
 
@@ -20,7 +20,7 @@ def lorenz_points(b, r, sigma, tmax, nsteps, x):
     dist = np.empty(0)
     for steps in range(nsteps):
         dist = np.append(dist, np.linalg.norm(x - x0))
-        x = tstep.step_rk2(x, dt, b, r, sigma)
+        x = tstep.step_rk2(x, dt, brsigma)
 
     # generate a time values array to plot dist against
     ts = np.linspace(0, tmax, nsteps)
