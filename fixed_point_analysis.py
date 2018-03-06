@@ -28,12 +28,12 @@ def lorenz_points(brsigma, tmax, nsteps, x):
         # here put function for generating h
         t += h
 
-    plt.figure()
+    fig = plt.figure()
     plt.title('$x_0$ = {}'.format(x_0))
     plt.xlabel('time')
     plt.ylabel('distance from $x_0$')
     plt.plot(ts, dist)
-    return None
+    return fig
 
 
 sigma = 41

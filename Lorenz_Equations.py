@@ -2,7 +2,6 @@ import numpy as np
 import matplotlib.pyplot as plt
 import timestepping as ts
 from mpl_toolkits.mplot3d import Axes3D
-from time import strftime
 
 '''
 For this function, b, r, and sigma are the parameters in the Lorenz Equations
@@ -14,12 +13,12 @@ If save set to True, save the final plot as "Lorenz plot.png"
 '''
 
 
-def lorenz_eq(brsigma, tmax, nsteps, points, linearise=False, save=False):
+def lorenz_eq(brsigma, tmax, nsteps, points, linearise=False):
     # colours
     colours = ['b', 'g', 'r', 'c', 'm', 'y', 'k', 'w']
 
     # create 3d figure to plot on
-    fig = plt.figure()
+    fig = plt.figure("Lorenz System")
     ax = Axes3D(fig)
     ax.set_title("Lorenz System")
     ax.set_xlabel('x')
@@ -43,17 +42,14 @@ def lorenz_eq(brsigma, tmax, nsteps, points, linearise=False, save=False):
         t = 0
 
         # creates the plot arrays
-        while t < tmax:
+        while t <= tmax:
             x = ts.step_rk4(x, h, brsigma, linearise)
             xs = np.append(xs, x[0])
             ys = np.append(ys, x[1])
             zs = np.append(zs, x[2])
+            # here put function for generating h
             t += h
 
         # plot the arrays
         ax.plot(xs, ys, zs, colours[colour], lw=0.5)
-
-    if save is True:
-        # save plot to file
-        plt.savefig('Lorenz plot {}.png'.format(strftime('%H-%M-%S')))
-    return None
+    return fig
