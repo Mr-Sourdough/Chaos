@@ -20,10 +20,14 @@ def lorenz_eq(brsigma, tmax, nsteps, points, linearise=False, save=False):
 
     # create 3d figure to plot on
     fig = plt.figure()
-    ax = fig.gca(projection='3d')
+    ax = Axes3D(fig)
+    ax.set_title("Lorenz System")
+    ax.set_xlabel('x')
+    ax.set_ylabel('y')
+    ax.set_zlabel('z')
 
     # calculate the time step
-    dt = tmax / nsteps
+    h = tmax / nsteps
 
     # first loop goes over each point
     for colour, x in enumerate(points):
@@ -35,19 +39,21 @@ def lorenz_eq(brsigma, tmax, nsteps, points, linearise=False, save=False):
         ys = np.array(x[1])
         zs = np.array(x[2])
 
+        # initialiase time t
+        t = 0
+
         # creates the plot arrays
-        for steps in range(nsteps):
-            x = ts.step_rk4(x, dt, brsigma, linearise)
+        while t < tmax:
+            x = ts.step_rk4(x, h, brsigma, linearise)
             xs = np.append(xs, x[0])
             ys = np.append(ys, x[1])
             zs = np.append(zs, x[2])
+            t += h
 
-            # plot the arrays
-            ax.plot(xs, ys, zs, colours[colour], lw=0.1)
+        # plot the arrays
+        ax.plot(xs, ys, zs, colours[colour], lw=0.5)
 
     if save is True:
         # save plot to file
-        return plt.savefig('Lorenz plot {}.png'.format(strftime('%H-%M-%S')))
-    else:
-        # or show the final image
-        return plt.show()
+        plt.savefig('Lorenz plot {}.png'.format(strftime('%H-%M-%S')))
+    return None

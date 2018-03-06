@@ -13,28 +13,34 @@ x is a single point as np.array
 
 
 def lorenz_points(brsigma, tmax, nsteps, x):
-    dt = tmax / nsteps  # calculate the time step
+    h = tmax / nsteps  # calculate first time step size
     x0 = x  # save initial point
+    t = 0  # initialise time
 
-    # creates the plot arrays
+    # create plot arrays
     dist = np.empty(0)
-    for steps in range(nsteps):
-        dist = np.append(dist, np.linalg.norm(x - x0))
-        x = tstep.step_rk2(x, dt, brsigma)
+    ts = np.empty(0)
 
-    # generate a time values array to plot dist against
-    ts = np.linspace(0, tmax, nsteps)
+    while t <= tmax:
+        dist = np.append(dist, np.linalg.norm(x - x0))
+        x = tstep.step_rk2(x, h, brsigma)
+        ts = np.append(ts, t)
+        # here put function for generating h
+        t += h
 
     plt.figure()
+    plt.title('$x_0$ = {}'.format(x_0))
+    plt.xlabel('time')
+    plt.ylabel('distance from $x_0$')
     plt.plot(ts, dist)
-    plt.show()
     return None
 
 
-sigma = 10
-m = 20.0
+sigma = 41
+m = 10.0
 n = int(m * 100)
 brsigma = (8/3, 28, sigma)
 
 lorenz_eq(brsigma, m, n, [x_0])
 lorenz_points(brsigma, m, n, x_0)
+plt.show()

@@ -48,11 +48,14 @@ def Rich_Extrap(x, h, brsigma, method, linearise=False):
     return x_out
 
 
-# def step_size(x, h, brsigma, method, tol, linearise):
-#     # Takes initial step size h and using local extrapolation estimates h_new
-#     # Only to be used with NON-Extrapolated methods
-#     x_large_h = method(x, h, brsigma, linearise)
-#     x_temp = method(x, h/2, brsigma, linearise)
-#     x_small_h = method(x_temp, h/2, brsigma, linearise)
-#     norm = np.linalg.norm(x_small_h - x_large_h)
-#     return h_new
+def step_size(x, h, brsigma, method, order, tol, linearise=False):
+    # Takes initial step size h and using local extrapolation estimates h_new
+    # Only to be used with NON-Extrapolated methods
+    # Needs order of method used
+    x_large_h = method(x, h, brsigma, linearise)
+    x_temp = method(x, h/2, brsigma, linearise)
+    x_small_h = method(x_temp, h/2, brsigma, linearise)
+    error = np.linalg.norm(x_small_h - x_large_h)/15
+    theta = 0.9 * (tol * h / error)**(1/order)
+    h_new = theta * h
+    return h_new
