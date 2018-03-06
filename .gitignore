@@ -112,6 +112,3 @@ ENV/
 
 # Database files
 .db
-
-# Test file
-test.py

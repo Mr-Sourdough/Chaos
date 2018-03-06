@@ -12,8 +12,7 @@ x is a single point as np.array
 '''
 
 
-def lorenz_points(brsigma, tmax, nsteps, x):
-    h = tmax / nsteps  # calculate first time step size
+def lorenz_points(brsigma, tmax, h, x):
     x0 = x  # save initial point
     t = 0  # initialise time
 
@@ -36,11 +35,10 @@ def lorenz_points(brsigma, tmax, nsteps, x):
     return fig
 
 
-sigma = 41
+sigma = 24
 m = 10.0
-n = int(m * 100)
+h = 0.02
 brsigma = (8/3, 28, sigma)
 
-lorenz_eq(brsigma, m, n, [x_0])
-lorenz_points(brsigma, m, n, x_0)
-plt.show()
+lorenz_eq(brsigma, m, h, [x_0]).savefig('Lorenz System var h .png')
+# lorenz_points(brsigma, m, n, x_0)
