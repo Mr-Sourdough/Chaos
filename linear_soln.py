@@ -5,11 +5,8 @@ from math import exp
 from Lorenz_Equations import lorenz_eq
 
 """
--Calibrated to have identical number of points to be able to measure real error
- (when h is constant)
 -Need to cater for non-constant h
 -Utilise fixed_point_analysis.py code for error calculation
--Convert into f-n to be able to create loop
 """
 
 brsigma = (1, 4, 1)
@@ -41,13 +38,13 @@ def exact_lin_soln(brsigma, tmax, h, x_0):
         ys = np.append(ys, x[1])
         zs = np.append(zs, x[2])
 
-    fig = plt.figure()
+    fig = plt.figure("Exact Linear Solution")
     ax = Axes3D(fig)
     ax.scatter(x_0[0], x_0[1], x_0[2])
     ax.plot(xs, ys, zs)
-    return None
+    return fig
 
 
-exact_linsoln(brsigma, tmax, h, x_0)
+exact_lin_soln(brsigma, tmax, h, x_0)
 lorenz_eq(brsigma, tmax, h, [x_0], linearise=True)
 plt.show()
