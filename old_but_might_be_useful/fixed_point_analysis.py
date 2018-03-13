@@ -40,5 +40,6 @@ m = 10.0
 h = 0.02
 brsigma = (8/3, 28, sigma)
 
-lorenz_eq(brsigma, m, h, [x_0]).savefig('Lorenz System var h .png')
+lorenz_eq(brsigma, m, h, x_0)
+plt.show()
 # lorenz_points(brsigma, m, n, x_0)
