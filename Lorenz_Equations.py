@@ -12,6 +12,12 @@ with x, y and z being the coordinates
 linearise parameter set to True evaluates for the linearised system
 '''
 
+fig = plt.figure("Lorenz System")
+ax = Axes3D(fig)
+ax.set_xlabel('x')
+ax.set_ylabel('y')
+ax.set_zlabel('z')
+
 
 def lorenz_eq(brsigma, tmax, h, x_0, method, linearise=False, coord=True):
     x = x_0
@@ -39,13 +45,10 @@ def lorenz_eq(brsigma, tmax, h, x_0, method, linearise=False, coord=True):
         return xs, ys, zs
     else:
         # create 3d plot
-        fig = plt.figure("Lorenz System")
-        ax = Axes3D(fig)
         ax.set_title("Lorenz System")
-        ax.set_xlabel('x')
-        ax.set_ylabel('y')
-        ax.set_zlabel('z')
         ax.scatter(x_0[0], x_0[1], x_0[2])
+        ax.text(x_0[0], x_0[1], x_0[2],
+                "({}, {}, {})".format(x_0[0], x_0[1], x_0[2]))
         ax.plot(xs, ys, zs)
         # print(times, hs, len(times), sep='\n')
         return fig

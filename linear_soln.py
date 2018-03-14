@@ -8,6 +8,13 @@ from math import exp
 -Utilise fixed_point_analysis.py code for error calculation
 """
 
+fig = plt.figure("Exact Solution of Linear Approximation")
+ax = Axes3D(fig)
+ax.set_title("Exact Solution of Linear Approximation")
+ax.set_xlabel('x axis')
+ax.set_ylabel('y axis')
+ax.set_zlabel('z axis')
+
 
 def exact_lin_soln(brsigma, tmax, h, x_0, coord=True):
     # Jacobian matrix calculated at origin
@@ -36,14 +43,19 @@ def exact_lin_soln(brsigma, tmax, h, x_0, coord=True):
         return xs, ys, zs
     else:
         # creates 3d plot
-        fig = plt.figure("Exact Linear Solution")
-        ax = Axes3D(fig)
-        ax.set_title("{}".format(x_0))
         ax.scatter(x_0[0], x_0[1], x_0[2])
-        ax.scatter(0, 0, 0)
-        ax.plot(xs, ys, zs)
+        ax.text(x_0[0], x_0[1], x_0[2],
+                "({}, {}, {})".format(x_0[0], x_0[1], x_0[2]), )
+        ax.plot(xs, ys, zs, lw=1.0)
         return fig
 
 
-exact_lin_soln((2, 7, 1), 1.0, 0.01, np.array([-1, 1, 0]), coord=False)
+# val = [-1, 1]
+#
+# for i in val:
+#     for j in val:
+#         for k in val:
+#             exact_lin_soln((2, 7, 1), 1.0, 0.01, np.array([i, j, k]), coord=False)
+ax.scatter(0, 0, 0)
+ax.text(0, 0, 0, "(0, 0, 0)")
 plt.show()
