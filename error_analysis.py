@@ -1,7 +1,6 @@
 import matplotlib.pyplot as plt
 import numpy as np
-from Lorenz_Equations import lorenz_eq
-from linear_soln import exact_lin_soln
+from plotting_3d import exact_lin_soln, lorenz_eq
 import timestepping as tstep
 
 """
