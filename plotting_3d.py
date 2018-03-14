@@ -4,16 +4,20 @@ from mpl_toolkits.mplot3d import Axes3D
 from math import exp
 import timestepping as tstep
 
-fig = plt.figure()
-ax = Axes3D(fig)
-ax.set_title("Plot title")
-ax.set_xlabel('x axis')
-ax.set_ylabel('y axis')
-ax.set_zlabel('z axis')
+
+def draw_axes():
+    fig = plt.figure()
+    ax = Axes3D(fig)
+    ax.set_title("Plot title")
+    ax.set_xlabel('x axis')
+    ax.set_ylabel('y axis')
+    ax.set_zlabel('z axis')
+    return ax
 
 
 def lorenz_eq(brsigma, tmax, h, x_0, method, linearise=False, coord=True):
     """
+    ***It is necessary to call ax = draw_axes() before calling this function***
     Plots the solution of the Lorenz system
     - brsigma is a tuple with the parameters b, r and sigma
     - tmax is the time to which the routine is run; needs to be float
@@ -53,14 +57,15 @@ def lorenz_eq(brsigma, tmax, h, x_0, method, linearise=False, coord=True):
         # create 3d plot
         ax.scatter(x_0[0], x_0[1], x_0[2], marker='.')
         ax.text(x_0[0], x_0[1], x_0[2],
-                "({}, {}, {})".format(x_0[0], x_0[1], x_0[2]))
+                "{}".format(tuple(x_0)))
         ax.plot(xs, ys, zs, lw=0.75)
         # print(times, hs, len(times), sep='\n')
-        return fig
+        return ax
 
 
 def exact_lin_soln(brsigma, tmax, h, x_0, coord=True):
     """
+    ***It is necessary to call ax = draw_axes() before calling this function***
     Plots the linearised solution around the origin.
     - brsigma is a tuple with the parameters b, r and sigma
     - tmax is the time to which the routine is run;
@@ -98,18 +103,19 @@ def exact_lin_soln(brsigma, tmax, h, x_0, coord=True):
         # creates 3d plot
         ax.scatter(x_0[0], x_0[1], x_0[2], marker='x')
         ax.text(x_0[0], x_0[1], x_0[2],
-                "({}, {}, {})".format(x_0[0], x_0[1], x_0[2]))
+                "{}".format(tuple(x_0)))
         ax.plot(xs, ys, zs, lw=2.0)
-        return fig
+        return ax
 
 
-par = (1, 4, 1)
-m = 0.2
-h = 0.01
-pt = np.array([-1, 1, 1])
-arr = False
-lin = True
-
-exact_lin_soln(par, m, h, pt, arr)
-lorenz_eq(par, m+0.1, h, pt, tstep.step_rk2, lin, arr)
-plt.show()
+# par = (1, 4, 1)
+# m = 0.2
+# h = 0.01
+# pt = np.array([-1, 1, 1])
+# arr = False
+# lin = True
+#
+# ax = draw_axes()
+# exact_lin_soln(par, m, h, pt, arr)
+# lorenz_eq(par, m+0.1, h, pt, tstep.step_rk2, lin, arr)
+# plt.show()
