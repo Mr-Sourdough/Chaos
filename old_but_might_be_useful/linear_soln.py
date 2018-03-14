@@ -5,7 +5,6 @@ from math import exp
 
 """
 -Need to cater for non-constant h
--Utilise fixed_point_analysis.py code for error calculation
 """
 
 fig = plt.figure("Exact Solution of Linear Approximation")
