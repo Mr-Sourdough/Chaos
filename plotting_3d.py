@@ -2,22 +2,20 @@ import numpy as np
 import matplotlib.pyplot as plt
 from mpl_toolkits.mplot3d import Axes3D
 from math import exp
-import timestepping as tstep
 
 
-def draw_axes():
+def draw_axes(title=None):
     fig = plt.figure()
     ax = Axes3D(fig)
-    ax.set_title("Plot title")
+    ax.set_title(title)
     ax.set_xlabel('x axis')
     ax.set_ylabel('y axis')
     ax.set_zlabel('z axis')
     return ax
 
 
-def lorenz_eq(brsigma, tmax, h, x_0, method, linearise=False, coord=True):
+def lorenz_eq(brsigma, tmax, h, x_0, method, ax=None, linearise=False, coord=True):
     """
-    ***It is necessary to call ax = draw_axes() before calling this function***
     Plots the solution of the Lorenz system
     - brsigma is a tuple with the parameters b, r and sigma
     - tmax is the time to which the routine is run; needs to be float
@@ -26,6 +24,7 @@ def lorenz_eq(brsigma, tmax, h, x_0, method, linearise=False, coord=True):
     - x_0 is the initial condition at t = 0 as numpy array
     - method is the timestepping routine to be used to integrate;
       still need to adapt for Richardson extrapolation
+    - ax is the set of 3d axes drawn with draw_axes()
     - linearise parameter set to True evaluates for the linearised system
     - coord parameter causes the f-n to return the plot arrays;
       set coord to False to generate plot.
@@ -63,15 +62,15 @@ def lorenz_eq(brsigma, tmax, h, x_0, method, linearise=False, coord=True):
         return ax
 
 
-def exact_lin_soln(brsigma, tmax, h, x_0, coord=True):
+def exact_lin_soln(brsigma, tmax, h, x_0, ax=None, coord=True):
     """
-    ***It is necessary to call ax = draw_axes() before calling this function***
     Plots the linearised solution around the origin.
     - brsigma is a tuple with the parameters b, r and sigma
     - tmax is the time to which the routine is run;
       best not to take tmax > 1.0; needs to be float
     - h is the step size
     - x_0 is the initial condition at t = 0 as numpy array
+    - ax is the set of 3d axes drawn with draw_axes()
     - coord parameter causes the f-n to return the plot arrays;
       set coord to False to generate plot.
     """
@@ -106,16 +105,3 @@ def exact_lin_soln(brsigma, tmax, h, x_0, coord=True):
                 "{}".format(tuple(x_0)))
         ax.plot(xs, ys, zs, lw=2.0)
         return ax
-
-
-# par = (1, 4, 1)
-# m = 0.2
-# h = 0.01
-# pt = np.array([-1, 1, 1])
-# arr = False
-# lin = True
-#
-# ax = draw_axes()
-# exact_lin_soln(par, m, h, pt, arr)
-# lorenz_eq(par, m+0.1, h, pt, tstep.step_rk2, lin, arr)
-# plt.show()

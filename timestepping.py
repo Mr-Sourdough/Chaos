@@ -25,7 +25,7 @@ def step_rk2(x, h, brsigma, linearise=False):
     # Runge-Kutta second order method
     k_1 = h * calc_dxdt(x, brsigma, linearise)
     k_2 = h * calc_dxdt(x + 0.5 * k_1, brsigma, linearise)
-    x_out = x + k_2
+    x_out = x + 0.5*(k_1 + k_2)
     return x_out
 
 
