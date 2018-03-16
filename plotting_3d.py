@@ -36,11 +36,12 @@ def lorenz_eq(brsigma, tmax, h, x_0, method, ax=None, linearise=False, coord=Tru
     zs = np.array(x_0[2])
 
     # initialiase time t
-    t = 0
+    # t = 0
     # times, hs = [], []
 
     # creates the plot arrays
-    while t <= tmax:
+    # while t <= tmax:
+    for i in range(int(tmax/h)):
         # times.append(t)
         # hs.append(h)
         x = method(x, h, brsigma, linearise)
@@ -49,7 +50,7 @@ def lorenz_eq(brsigma, tmax, h, x_0, method, ax=None, linearise=False, coord=Tru
         zs = np.append(zs, x[2])
         # here put function for generating h
         # h = ts.step_size(x, h, brsigma, method, 4, 10**-4)
-        t += h
+        # t += h
     if coord is True:
         return xs, ys, zs
     else:
