@@ -2,6 +2,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 from mpl_toolkits.mplot3d import Axes3D
 from math import exp
+from timestepping import step_size
 
 
 def draw_axes(title=None):
@@ -14,7 +15,8 @@ def draw_axes(title=None):
     return ax
 
 
-def lorenz_eq(brsigma, tmax, h, x_0, method, ax=None, linearise=False, coord=True):
+def lorenz_eq(brsigma, tmax, h, x_0, method,
+              ax=None, linearise=False, coord=True, adapt=False):
     """
     Plots the solution of the Lorenz system
     - brsigma is a tuple with the parameters b, r and sigma
@@ -28,6 +30,7 @@ def lorenz_eq(brsigma, tmax, h, x_0, method, ax=None, linearise=False, coord=Tru
     - linearise parameter set to True evaluates for the linearised system
     - coord parameter causes the f-n to return the plot arrays;
       set coord to False to generate plot.
+    - adapt switches the adaptive step size function on
     """
     x = x_0
     # initialise xs, ys and zs
@@ -36,21 +39,19 @@ def lorenz_eq(brsigma, tmax, h, x_0, method, ax=None, linearise=False, coord=Tru
     zs = np.array(x_0[2])
 
     # initialiase time t
-    # t = 0
-    # times, hs = [], []
+    t = 0
 
     # creates the plot arrays
-    # while t <= tmax:
-    for i in range(int(tmax/h)):
-        # times.append(t)
-        # hs.append(h)
+    while t <= tmax:
+        x_prev = x
         x = method(x, h, brsigma, linearise)
         xs = np.append(xs, x[0])
         ys = np.append(ys, x[1])
         zs = np.append(zs, x[2])
-        # here put function for generating h
-        # h = ts.step_size(x, h, brsigma, method, 4, 10**-4)
-        # t += h
+        if adapt is True:
+            # here put function for generating h
+            h = step_size(x_prev, h, brsigma, method, 10**-4)
+        t += h
     if coord is True:
         return xs, ys, zs
     else:

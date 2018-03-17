@@ -1,8 +1,8 @@
-"""timestepping module"""
 import numpy as np
 
-"""brsigma is a tuple containing
-the b, r and sigma paramateres for the system"""
+"""
+brsigma is a tuple containing the paramateres b, r and sigma
+"""
 
 
 def calc_dxdt(x, brsigma, linearise=False):
@@ -57,14 +57,15 @@ def RE_rk4(x, h, brsigma, linearise=False):
     return x_out
 
 
-def step_size(x, h, brsigma, method, order, tol, linearise=False):
+def step_size(x, h, brsigma, method, tol, linearise=False):
     # Takes initial step size h and using local extrapolation estimates h_new
     # Only to be used with NON-Extrapolated methods
-    # Needs order of method used
-    x_large_h = method(x, h, brsigma, linearise)
-    x_temp = method(x, h/2, brsigma, linearise)
-    x_small_h = method(x_temp, h/2, brsigma, linearise)
-    error = np.linalg.norm(x_small_h - x_large_h)/15
+    method_name = method.__name__
+    order = int(method_name[-1])
+    x_large_h = method(x, 2*h, brsigma, linearise)
+    x_temp = method(x, h, brsigma, linearise)
+    x_small_h = method(x_temp, h, brsigma, linearise)
+    error = np.linalg.norm(x_small_h - x_large_h)/(2 ** order - 1)
     theta = 0.9 * (tol * h / error)**(1/order)
     h_new = theta * h
     return h_new
