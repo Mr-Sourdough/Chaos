@@ -1,8 +1,15 @@
+"""
+Warning!
+Imagemagick needs to be installed on the machine
+for this file to execute properly
+"""
+
 from plotting_3d import draw_axes, lorenz_eq
 from timestepping import RE_rk4
 from matplotlib import animation
 from matplotlib import pyplot as plt
 import pickle
+plt.rcParams['animation.convert_path'] = 'C:/Program Files/ImageMagick-7.0.7-Q16/magick.exe'
 
 with open("plot_data.pickle", 'br') as data:
     coords = pickle.load(data)
@@ -35,4 +42,7 @@ def animate(i):
 anim = animation.FuncAnimation(final_plot, animate, init_func=init,
                                 frames=750, interval=20, blit=True)
 
-plt.show()
+gif_writer = animation.ImageMagickFileWriter()
+anim.save('lorenz_animation.gif', writer=gif_writer)
+
+# plt.show()
