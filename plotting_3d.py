@@ -12,7 +12,7 @@ def draw_axes(title=None):
     ax.set_xlabel('x axis')
     ax.set_ylabel('y axis')
     ax.set_zlabel('z axis')
-    return ax
+    return ax, fig
 
 
 def lorenz_eq(brsigma, tmax, h, x_0, method,
