@@ -31,3 +31,12 @@ def method_error(brsigma, tmax, h, x_0, method):
     plt.ylabel('distance from exact solution')
     plt.semilogy(ts, error)
     return fig
+
+
+def method_error_at_tmax(brsigma, tmax, h, x_0, method):
+    xs, ys, zs = lorenz_eq(brsigma, tmax, h, x_0, method, linearise=True)
+    exact_xs, exact_ys, exact_zs = exact_lin_soln(brsigma, tmax, h, x_0)
+    method_vec = np.array([xs[-1], ys[-1], zs[-1]])
+    exact_vec = np.array([exact_xs[-1], exact_ys[-1], exact_zs[-1]])
+    error = np.linalg.norm(method_vec - exact_vec)
+    return error

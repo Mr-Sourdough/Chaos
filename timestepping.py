@@ -38,6 +38,29 @@ def step_rk4(x, h, brsigma, linearise=False):
     x_out = x + (k_1 + 2 * k_2 + 2 * k_3 + k_4) / 6
     return x_out
 
+def step_rk64(x, h, brsigma, linearise=False):
+    # Runge-Kutta fourth order, six step method
+    k_1 = h * calc_dxdt(x, brsigma, linearise)
+    k_2 = h * calc_dxdt(x + 0.244 * k_1, brsigma, linearise)
+    k_3 = h * calc_dxdt(x + 0.172 * k_1 + 11/64 * k_2, brsigma, linearise)
+    k_4 = h * calc_dxdt(x + 0.084 * k_2 + 0.5 * k_3, brsigma, linearise)
+    k_5 = h * calc_dxdt(x - 0.004 * k_1 - 15/64 * k_2 + 0.418 * k_3 + 9/16 * k_4, brsigma, linearise)
+    k_6 = h * calc_dxdt(x + 0.568 * k_2 + 6/7 * k_3 - 1.11 * k_4 + 0.685 * k_5, brsigma, linearise)
+    x_out = x + (0.066 * k_1 + 0.335 * k_2 + 0.06 * k_3 + 0.105 * k_4 + 32/90 * k_5 + 7/90 * k_6)
+    return x_out
+
+
+def step_rk65(x, h, brsigma, linearise=False):
+    # Runge-Kutta fifth order, six step method
+    k_1 = h * calc_dxdt(x, brsigma, linearise)
+    k_2 = h * calc_dxdt(x + 2/5 * k_1, brsigma, linearise)
+    k_3 = h * calc_dxdt(x + 11/64 * (k_1 + k_2), brsigma, linearise)
+    k_4 = h * calc_dxdt(x + 0.5 * k_3, brsigma, linearise)
+    k_5 = h * calc_dxdt(x + (3 * k_1 - 15 * k_2 + 24 * k_3 + 36 * k_4) / 64, brsigma, linearise)
+    k_6 = h * calc_dxdt(x + (5 * k_2 + 6 * k_3 - 12 * k_4 + 8 * k_5) / 7, brsigma, linearise)
+    x_out = x + (7 * k_1 + 32 * k_3 + 12 * k_4 + 32 * k_5 + 7 * k_6) / 90
+    return x_out
+
 
 def RE_rk2(x, h, brsigma, linearise=False):
     # Calculate large step x_large_h, then for two small steps and extrapolate
